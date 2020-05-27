@@ -89,7 +89,8 @@ module "template" {
   source           = "./modules/create_template"
   name             = var.template.name
   local_ovf        = "${path.module}/${var.template.ovf_name}"
-  resource_pool_id = data.vsphere_resource_pool.sni.id
+  /* resource_pool_id = data.vsphere_resource_pool.sni.id */
+  resource_pool_id = "./modules/resource_pool"
   host             = var.host
   datastore        = var.datastore
   datacenter       = var.datacenter
