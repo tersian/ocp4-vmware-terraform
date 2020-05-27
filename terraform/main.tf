@@ -147,7 +147,7 @@ module "create_ignitions_logging" {
 module "bootstrap" {
   source           = "./modules/clone_from_template"
   folder           = vsphere_folder.cluster.path
-  resource_pool_id = data.vsphere_resource_pool.sni.id
+  resource_pool_id = "./modules/resource_pool"
   host_system_id   = data.vsphere_host.esxi67.id
   datastore_id     = data.vsphere_datastore.datastore.id
   network_id       = data.vsphere_network.network.id
