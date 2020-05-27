@@ -123,7 +123,7 @@ module "create_ignitions_worker" {
   url_ignition = var.url_ignition
   type         = "worker"
 }
-module "create_ignitions_infra" {
+/* module "create_ignitions_infra" {
   source       = "./modules/create_ignitions"
   node_network = var.node_network
   cluster_name = var.ocp_cluster_name
@@ -140,7 +140,7 @@ module "create_ignitions_logging" {
   root_path    = var.full_path
   url_ignition = var.url_ignition
   type         = "worker"
-}
+} */
 
 module "bootstrap" {
   source           = "./modules/clone_from_template"
