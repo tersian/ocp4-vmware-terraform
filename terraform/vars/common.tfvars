@@ -15,8 +15,8 @@ vsphere_server   = "vcenter.sni.com.mx"
 datacenter = "BHM"
 datastore = "SAS-6K"
 network = "VM Network"
-/* resource_pool = "Resources"
-host = "esxi67.sni.com.mx" */
+resource_pool = "Resources"
+host = "esxi67.sni.com.mx"
 
 ## TEMPLATE NAME DESIRED
 template = {

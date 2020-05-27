@@ -16,17 +16,17 @@ data "vsphere_datastore" "datastore" {
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
-/* data "vsphere_host" "esxi67" {
+data "vsphere_host" "esxi67" {
   name          = var.host
   datacenter_id = data.vsphere_datacenter.dc.id
-} */
+}
 
 resource "vsphere_virtual_machine" "template" {
   name                        = var.name
   datacenter_id               = data.vsphere_datacenter.dc.id
-  /* resource_pool_id            = var.resource_pool_id */
+  resource_pool_id            = var.resource_pool_id
   datastore_id                = data.vsphere_datastore.datastore.id
-  /* host_system_id              = data.vsphere_host.esxi67.id */
+  host_system_id              = data.vsphere_host.esxi67.id
   folder                      = var.folder
   enable_disk_uuid            = true
   wait_for_guest_net_timeout  = 0
