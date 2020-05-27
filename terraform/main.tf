@@ -52,22 +52,22 @@ data "vsphere_network" "network" {
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
-data "vsphere_resource_pool" "sni" {
+/* data "vsphere_resource_pool" "sni" {
   name          = var.resource_pool
   datacenter_id = data.vsphere_datacenter.dc.id
-}
+} */
 
-data "vsphere_host" "esxi67" {
+/* data "vsphere_host" "esxi67" {
   name          = var.host
   datacenter_id = data.vsphere_datacenter.dc.id
-}
+} */
 
 module "template" {
   source           = "./modules/create_template"
   name             = var.template.name
   local_ovf        = "${path.module}/${var.template.ovf_name}"
-  resource_pool_id = data.vsphere_resource_pool.sni.id
-  host             = var.host
+/*   resource_pool_id = data.vsphere_resource_pool.sni.id
+  host             = var.host */
   datastore        = var.datastore
   datacenter       = var.datacenter
   folder           = vsphere_folder.cluster.path
@@ -123,8 +123,8 @@ module "create_ignitions_logging" {
 module "bootstrap" {
   source           = "./modules/clone_from_template"
   folder           = vsphere_folder.cluster.path
-  resource_pool_id = data.vsphere_resource_pool.sni.id
-  host_system_id   = data.vsphere_host.esxi67.id
+/*   resource_pool_id = data.vsphere_resource_pool.sni.id
+  host_system_id   = data.vsphere_host.esxi67.id */
   datastore_id     = data.vsphere_datastore.datastore.id
   network_id       = data.vsphere_network.network.id
   guest_id         = module.template.guest_id
@@ -138,8 +138,8 @@ module "master" {
   source           = "./modules/clone_from_template"
   folder           = vsphere_folder.cluster.path
   resource_pool_id = data.vsphere_resource_pool.sni.id
-  host_system_id   = data.vsphere_host.esxi67.id
-  datastore_id     = data.vsphere_datastore.datastore.id
+/*   host_system_id   = data.vsphere_host.esxi67.id
+  datastore_id     = data.vsphere_datastore.datastore.id */
   network_id       = data.vsphere_network.network.id
   guest_id         = module.template.guest_id
   adapter_type     = module.template.adapter_type[0].adapter_type
@@ -151,8 +151,8 @@ module "master" {
 module "worker" {
   source           = "./modules/clone_from_template"
   folder           = vsphere_folder.cluster.path
-  resource_pool_id = data.vsphere_resource_pool.sni.id
-  host_system_id   = data.vsphere_host.esxi67.id
+/*   resource_pool_id = data.vsphere_resource_pool.sni.id
+  host_system_id   = data.vsphere_host.esxi67.id */
   datastore_id     = data.vsphere_datastore.datastore.id
   network_id       = data.vsphere_network.network.id
   guest_id         = module.template.guest_id
@@ -162,7 +162,7 @@ module "worker" {
   machine_config   = var.node_configs.worker
 }
 
-module "infra" {
+/* module "infra" {
   source           = "./modules/clone_from_template"
   folder           = vsphere_folder.cluster.path
   resource_pool_id = data.vsphere_resource_pool.sni.id
@@ -188,7 +188,7 @@ module "logging" {
   template_uuid    = module.template.template_id
   vm_data          = module.create_ignitions_logging.data
   machine_config   = var.node_configs.logging
-}
+} */
 
 output machine {
   value = module.template.machine

@@ -12,8 +12,8 @@ resource "vsphere_virtual_machine" "clone" {
   count            = length(var.vm_data)
   name             = var.machine_config.hostname[count.index]
   folder           = var.folder
-  resource_pool_id = var.resource_pool_id
-  host_system_id   = var.host_system_id
+ /*  resource_pool_id = var.resource_pool_id */
+  /* host_system_id   = var.host_system_id */
   datastore_id     = var.datastore_id
   enable_disk_uuid = true
   wait_for_guest_net_timeout = -1

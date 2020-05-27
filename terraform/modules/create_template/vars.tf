@@ -15,13 +15,13 @@ variable "folder" {
   default = ""
 }
 
-variable "resource_pool_id" {
+/* variable "resource_pool_id" {
   default = ""
-}
+} */
 
-variable "host" {
+/* variable "host" {
   default = ""
-}
+} */
 
 variable "datastore" {
   default = ""
