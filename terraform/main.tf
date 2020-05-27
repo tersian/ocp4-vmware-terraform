@@ -12,6 +12,7 @@
 variable vsphere_user {}
 variable vsphere_password {}
 variable vsphere_server {}
+variable vsphere_cluster {}
 variable ocp_cluster_name {}
 variable full_path {}
 variable datacenter {}
