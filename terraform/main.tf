@@ -52,15 +52,37 @@ data "vsphere_network" "network" {
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
-data "vsphere_resource_pool" "sni" {
+/* Old reference
+
+  data "vsphere_resource_pool" "sni" {
   name          = var.resource_pool
   datacenter_id = data.vsphere_datacenter.dc.id
+} */
+
+# if below doesn't work, try this:
+
+module "resource_pool" {
+  source = "./resource_pool"
+
+  name            = "${var.cluster_id}"
+  datacenter_id   = "${data.vsphere_datacenter.dc.id}"
+  vsphere_cluster = "${var.vsphere_cluster}"
 }
 
-data "vsphere_host" "esxi67" {
+// ID identifying the cluster to create. Use your username so that resources created can be tracked back to you.
+// cluster_id = "example-cluster"
+
+
+/* data "vsphere_resource_pool" "sni" {
+  name          = var.vsphere_cluster
+# datacenter_id = "${data.vsphere_datacenter.dc.id}"
+  datacenter_id = data.vsphere_datacenter.dc.id
+} */
+
+/* data "vsphere_host" "esxi67" {
   name          = var.host
   datacenter_id = data.vsphere_datacenter.dc.id
-}
+} */
 
 module "template" {
   source           = "./modules/create_template"

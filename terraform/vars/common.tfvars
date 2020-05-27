@@ -11,6 +11,7 @@
 vsphere_user     = "administrator@sni.com.mx"
 vsphere_password = "Password123!"
 vsphere_server   = "vcenter.sni.com.mx"
+vsphere_cluster  = "CBTS Cluster"
 
 datacenter = "BHM"
 datastore = "SAS-6K"
