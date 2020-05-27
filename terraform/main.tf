@@ -64,9 +64,9 @@ data "vsphere_network" "network" {
 module "resource_pool" {
   source = "./resource_pool"
 
-  name            = "${var.cluster_id}"
-  datacenter_id   = "${data.vsphere_datacenter.dc.id}"
-  vsphere_cluster = "${var.vsphere_cluster}"
+  name            = var.cluster_id
+  datacenter_id   = data.vsphere_datacenter.dc.id
+  vsphere_cluster = var.vsphere_cluster
 }
 
 // ID identifying the cluster to create. Use your username so that resources created can be tracked back to you.
