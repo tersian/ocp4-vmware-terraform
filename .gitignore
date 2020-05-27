@@ -11,3 +11,4 @@ terraform/*.vmdk
 terraform/govc_env
 deploy/auth/*
 install-config.yaml
+ocp4.code-workspace
